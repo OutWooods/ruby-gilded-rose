@@ -85,6 +85,12 @@ describe 'quality ' do
       expect { single_rose.update_quality }.to change { pass.quality }.by 2
     end
 
+    it 'backstage pass goes up by 3 when there are 5 days left' do
+      pass = Item.new('Backstage passes to a TAFKAL80ETC concert', 5, 30)
+      single_rose = GildedRose.new([pass])
+      expect { single_rose.update_quality }.to change { pass.quality }.by 3
+    end
+
     it 'backstage pass does not go up past 50 when there are > 10 days left' do
       pass = Item.new('Backstage passes to a TAFKAL80ETC concert', 13, 50)
       single_rose = GildedRose.new([pass])
