@@ -1,7 +1,5 @@
 class GildedRose
 
-NORMAL_DEGRADATION = 1
-
   def initialize(items)
     @items = items
   end
@@ -12,7 +10,7 @@ NORMAL_DEGRADATION = 1
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert" #rule 2 and rule 6
         if item.quality > 0   #rule 2
           if item.name != "Sulfuras, Hand of Ragnaros" # rule 5
-            item.quality -= NORMAL_DEGRADATION  # rule 1 ()
+            item.quality -= 1 # rule 1 ()
           end
         end
 

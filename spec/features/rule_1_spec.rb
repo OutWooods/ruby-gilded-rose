@@ -7,13 +7,15 @@ describe 'lowers quality by one on a normal object' do
   subject(:rose) { GildedRose.new([rocket, off_rocket])}
 
   describe '#update_quality' do
-    it 'should reduce normal foods quality within sell_in by default amount' do
-      expect { rose.update_quality }.to change { rocket.quality }.by -GildedRose::NORMAL_DEGRADATION
-    end
+    describe '#quality' do
+      it 'should reduce normal foods quality within sell_in by default amount' do
+        expect { rose.update_quality }.to change { rocket.quality }.by -1
+      end
 
-    it 'should reduce food outside sell_in by twice the normal amount' do
-      quality_reduction = GildedRose::NORMAL_DEGRADATION * -2
-      expect { rose.update_quality }.to change { off_rocket.quality }.by quality_reduction
+      it 'should reduce food outside sell_in by twice the normal amount' do
+        quality_reduction = -2
+        expect { rose.update_quality }.to change { off_rocket.quality }.by quality_reduction
+      end
     end
   end
 end
