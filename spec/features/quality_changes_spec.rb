@@ -37,5 +37,12 @@ describe 'lowers quality by one on a normal object' do
       single_rose.update_quality
       expect { single_rose.update_quality }.to change { brie.quality }.by(1)
     end
+
+    it 'should increase quality of even when its passed sell_in Brie' do
+      brie = Item.new('Aged Brie', 0, 0)
+      single_rose = GildedRose.new([brie])
+      single_rose.update_quality
+      expect { single_rose.update_quality }.to change { brie.quality }.by(2)
+    end
   end
 end
