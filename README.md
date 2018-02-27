@@ -31,7 +31,7 @@ Food that is off, but has a quality of 1, should go down to 0
 
 Brie increases in quality by twice as much when it is passed sell in
 
-Backstage passes stay the same quality if they are more than 10 days before sell in
+Backstage go up by 1 when sell in is +1 
 
 
 
