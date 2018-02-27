@@ -37,7 +37,6 @@ Things I am particularly keen to improve (do give me feedback on any other aspec
   - Do you see any steps where I jumped too fast?
   - Keeping my methods short, and responsibilities clear
 
-
 ## Tech
   - rspec
   - ruby
