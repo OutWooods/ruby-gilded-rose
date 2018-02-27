@@ -23,11 +23,12 @@ The Quality of an item is never more than 50
 Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Quality drops to 0 after the concert
 
 *Clairifcations of edge cases*
-Since there are several edge cases, I have interpreted the code to understand extra (possible) rules
+Since there are several edge cases, these understand extra (possible) rules:
 
 Sulfras' sell_in never changes
 
 Food that is off, but has a quality of 1, should go down to 0
+
 
 
 ####What you can change

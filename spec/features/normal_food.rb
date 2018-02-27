@@ -4,7 +4,8 @@ require './src/item'
 describe 'lowers quality by one on a normal object' do
   subject(:rocket) { Item.new('Rocket', 10, 10) }
   subject(:off_rocket) { Item.new('Rocket', 0, 10) }
-  subject(:rose) { GildedRose.new([rocket, off_rocket]) }
+  subject(:low_quality_rocket) { Item.new('Rocket', 10, 0) }
+  subject(:low_quality_off_rocket) { Item.new('Rocket', 0, 1) }
 
   describe '#quality' do
     it 'should reduce normal foods quality within sell_in by default amount' do
@@ -16,6 +17,18 @@ describe 'lowers quality by one on a normal object' do
       single_rose = GildedRose.new([off_rocket])
       change = -2
       expect { single_rose.update_quality }.to change { off_rocket.quality }.by change
+    end
+    
+    it 'should not reduce a normal foods quality below 0' do
+      single_rose = GildedRose.new([low_quality_rocket])
+      single_rose.update_quality
+      expect(low_quality_rocket.quality).to be >= 0
+    end
+
+    it 'should not reduce off normal foods quality below 0' do
+      single_rose = GildedRose.new([low_quality_off_rocket])
+      single_rose.update_quality
+      expect(low_quality_off_rocket.quality).to eq 0
     end
   end
 end
