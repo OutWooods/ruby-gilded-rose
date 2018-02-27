@@ -20,7 +20,7 @@ The Quality of an item is never more than 50
 
 “Backstage passes”, like aged brie, increases in Quality as it’s SellIn value approaches;
 
-Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Quality drops to 0 after the concert
+Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Quality drops to 0 after the concert (aka when sell in = 0)
 
 *Clairifcations of edge cases*
 Since there are several edge cases, these understand extra (possible) rules:
@@ -30,6 +30,7 @@ Sulfras' sell_in never changes
 Food that is off, but has a quality of 1, should go down to 0
 
 Brie increases in quality by twice as much when it is passed sell in
+
 
 
 
