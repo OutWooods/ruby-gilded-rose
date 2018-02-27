@@ -1,7 +1,8 @@
 require './src/gilded_rose'
 require './src/item'
 
-describe 'lowers quality by one on a normal object' do
+describe 'lowers qu
+}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ity by one on a normal object' do
   subject(:rocket) { Item.new('Rocket', 10, 10) }
   subject(:off_rocket) { Item.new('Rocket', 0, 10) }
   subject(:low_quality_rocket) { Item.new('Rocket', 10, 0) }
@@ -15,7 +16,8 @@ describe 'lowers quality by one on a normal object' do
 
     it 'should reduce food outside sell_in by twice the normal amount' do
       single_rose = GildedRose.new([off_rocket])
-      expect { single_rose.update_quality }.to change { off_rocket.quality }.by -2
+      expect { single_rose.update_quality }.to change {
+                                          off_rocket.quality }.by -2
     end
 
     it 'should not reduce a normal foods quality below 0' do
@@ -62,6 +64,13 @@ describe 'lowers quality by one on a normal object' do
       sulfras = Item.new('Sulfuras, Hand of Ragnaros', 10, 80)
       single_rose = GildedRose.new([sulfras])
       expect { single_rose.update_quality }.not_to change { sulfras.quality }
+    end
+
+    it 'backstage pass stays the same when there are > 10 days left' do
+      pass = Item.new('Backstage passes to a TAFKAL80ETC concert', 11, 50)
+      single_rose = GildedRose.new([pass])
+      single_rose.update_quality
+      expect { single_rose.update_quality }.not_to change { pass.quality }
     end
 
     it 'back stage pass should go down to 0 after concert' do
