@@ -52,7 +52,7 @@ class GildedRose
 
         else # rule 3
           if item.quality < 50
-            item.quality = item.quality + 1 
+            item.quality = item.quality + 1
           end
         end
       end
