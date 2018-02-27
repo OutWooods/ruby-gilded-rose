@@ -1,14 +1,14 @@
 require './src/gilded_rose'
 require './src/item'
 
-describe 'lowers qu
-}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ity by one on a normal object' do
-  subject(:rocket) { Item.new('Rocket', 10, 10) }
-  subject(:off_rocket) { Item.new('Rocket', 0, 10) }
-  subject(:low_quality_rocket) { Item.new('Rocket', 10, 0) }
-  subject(:low_quality_off_rocket) { Item.new('Rocket', 0, 1) }
-
+describe 'quality ' do
   describe '#quality' do
+    subject(:rocket) { Item.new('Rocket', 10, 10) }
+    subject(:off_rocket) { Item.new('Rocket', 0, 10) }
+    subject(:low_quality_rocket) { Item.new('Rocket', 10, 0) }
+    subject(:low_quality_off_rocket) { Item.new('Rocket', 0, 1) }
+
+
     it 'should reduce normal foods quality within sell_in by default amount' do
       single_rose = GildedRose.new([rocket])
       expect { single_rose.update_quality }.to change { rocket.quality }.by(-1)
@@ -17,7 +17,8 @@ describe 'lowers qu
     it 'should reduce food outside sell_in by twice the normal amount' do
       single_rose = GildedRose.new([off_rocket])
       expect { single_rose.update_quality }.to change {
-                                          off_rocket.quality }.by -2
+                                                        off_rocket.quality
+                                                      }.by(-2)
     end
 
     it 'should not reduce a normal foods quality below 0' do
@@ -73,13 +74,13 @@ describe 'lowers qu
     end
 
     it 'backstage pass goes up by 2 when there are 10 days left' do
-      pass = Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 30)
+      pass = Item.new('Backstage passes to a TAFKAL80ETC concert', 10, 30)
       single_rose = GildedRose.new([pass])
       expect { single_rose.update_quality }.to change { pass.quality }.by 2
     end
 
     it 'backstage pass goes up by 2 when there are 6 days left' do
-      pass = Item.new("Backstage passes to a TAFKAL80ETC concert", 6, 30)
+      pass = Item.new('Backstage passes to a TAFKAL80ETC concert', 6, 30)
       single_rose = GildedRose.new([pass])
       expect { single_rose.update_quality }.to change { pass.quality }.by 2
     end
@@ -90,7 +91,7 @@ describe 'lowers qu
       expect { single_rose.update_quality }.to_not change { pass.quality }
     end
 
-    it 'backstage pass does not go up past 50 when there are 3 < x > 10 days left' do
+    it 'backstage pass does not got past 50 when 3 < x > 10 days left' do
       pass = Item.new('Backstage passes to a TAFKAL80ETC concert', 10, 49)
       single_rose = GildedRose.new([pass])
       single_rose.update_quality
@@ -98,14 +99,18 @@ describe 'lowers qu
     end
 
     it 'backstage pass does not go up past 50 when there are > 3 days left' do
-      pass = Item.new('Backstage passes to a TAFKAL80ETC concert', 2, 48)
+      pass = Item.new(
+        'Backstage passes to a TAFKAL80ETC concert', 2, 48
+      )
       single_rose = GildedRose.new([pass])
       single_rose.update_quality
       expect(pass.quality).to eq 50
     end
 
     it 'back stage pass should go down to 0 after concert' do
-      backstage_pass = Item.new('Backstage passes to a TAFKAL80ETC concert', 0, 50)
+      backstage_pass = Item.new(
+        'Backstage passes to a TAFKAL80ETC concert', 0, 50
+      )
       single_rose = GildedRose.new([backstage_pass])
       single_rose.update_quality
       expect(backstage_pass.quality).to eq 0
