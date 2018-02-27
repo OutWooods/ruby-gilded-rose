@@ -1,4 +1,4 @@
-require './gilded_rose'
+require './src/gilded_rose'
 
 describe GildedRose do
 
