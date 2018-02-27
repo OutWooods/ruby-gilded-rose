@@ -17,5 +17,11 @@ describe 'lowers quality by one on a normal object' do
         expect { rose.update_quality }.to change { off_rocket.quality }.by quality_reduction
       end
     end
+
+    describe '#sell_in' do
+      it 'should reduce normal foods sell_in by default amount' do
+        expect { rose.update_quality }.to change { rocket.sell_in }.by -1
+      end
+    end
   end
 end
