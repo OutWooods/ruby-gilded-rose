@@ -63,5 +63,12 @@ describe 'lowers quality by one on a normal object' do
       single_rose = GildedRose.new([sulfras])
       expect { single_rose.update_quality }.not_to change { sulfras.quality }
     end
+
+    it 'back stage pass should go down to 0 after concert' do
+      backstage_pass = Item.new('Backstage passes to a TAFKAL80ETC concert', 0, 50)
+      single_rose = GildedRose.new([backstage_pass])
+      single_rose.update_quality
+      expect(backstage_pass.quality).to eq 0
+    end
   end
 end
