@@ -29,6 +29,8 @@ Sulfras' sell_in never changes
 
 Food that is off, but has a quality of 1, should go down to 0
 
+Brie increases in quality by twice as much when it is passed sell in
+
 
 
 ####What you can change
@@ -51,6 +53,7 @@ Things I am particularly keen to improve (do give me feedback on any other aspec
   - Have I communicated what I've done well? (E.g. commit messages, method/variable names.
   - Do you see any steps where I jumped too fast?
   - Keeping my methods short, and responsibilities clear
+
 
 ## Tech
   - rspec
