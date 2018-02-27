@@ -1,7 +1,7 @@
 require './src/item'
 
 describe Item do
-  subject(:item) {described_class.new('Food', 'When', 'Standard')}
+  subject(:item) { described_class.new('Food', 'When', 'Standard') }
 
   describe '#initialize' do
     it 'should store a name' do

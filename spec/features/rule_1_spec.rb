@@ -4,7 +4,7 @@ require './src/item'
 describe 'lowers quality by one on a normal object' do
   subject(:rocket) { Item.new('Rocket', 10, 10) }
   subject(:off_rocket) { Item.new('Rocket', 0, 10) }
-  subject(:rose) { GildedRose.new([rocket, off_rocket])}
+  subject(:rose) { GildedRose.new([rocket, off_rocket]) }
 
   describe '#update_quality' do
     describe '#quality' do
