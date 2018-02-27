@@ -16,7 +16,7 @@ describe 'lowers quality by one on a normal object' do
     it 'should not reduce off normal foods quality below 0' do
       single_rose = GildedRose.new([low_quality_off_rocket])
       single_rose.update_quality
-      expect(low_quality_off_rocket.quality).to be >= 0
+      expect(low_quality_off_rocket.quality).to eq 0
     end
   end
 end
