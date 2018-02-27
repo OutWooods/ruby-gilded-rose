@@ -18,6 +18,7 @@ describe 'lowers quality by one on a normal object' do
         change = -2
         expect { single_rose.update_quality }.to change { off_rocket.quality }.by change
       end
+
     end
   end
 end
