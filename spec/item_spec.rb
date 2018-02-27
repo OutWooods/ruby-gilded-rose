@@ -17,6 +17,11 @@ describe Item do
       item = Item.new('Food', 'When', 'Thing')
       expect(item.sell_in).to eq 'When'
     end
+
+    it 'should store a quality' do
+      item = Item.new('Food', 'When', 'Standard')
+      expect(item.quality).to eq 'Standard'
+    end
   end
 
 end
