@@ -1,1 +1,1 @@
-require './lib/item'
+require './src/item'
