@@ -93,6 +93,13 @@ describe 'lowers qu
       expect(pass.quality).to eq 50
     end
 
+    it 'backstage pass does not go up past 50 when there are > 3 days left' do
+      pass = Item.new('Backstage passes to a TAFKAL80ETC concert', 2, 48)
+      single_rose = GildedRose.new([pass])
+      single_rose.update_quality
+      expect(pass.quality).to eq 50
+    end
+
     it 'back stage pass should go down to 0 after concert' do
       backstage_pass = Item.new('Backstage passes to a TAFKAL80ETC concert', 0, 50)
       single_rose = GildedRose.new([backstage_pass])
