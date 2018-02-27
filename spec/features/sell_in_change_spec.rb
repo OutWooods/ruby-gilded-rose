@@ -8,7 +8,13 @@ describe 'changes to sell in' do
 
   describe '#sell_in' do
     it 'should reduce normal foods by default amount' do
-      expect { rose.update_quality }.to change { rocket.sell_in }.by -1
+      expect { rose.update_quality }.to change { rocket.sell_in }.by(-1)
     end
+
+    it 'should reduce off foods by default amount' do
+      expect { rose.update_quality }.to change { off_rocket.sell_in }.by(-1)
+    end
+
+
   end
 end
