@@ -67,16 +67,20 @@ describe 'lowers qu
     end
 
     it 'backstage pass goes up by 1 when there are > 10 days left' do
-      pass = Item.new('Backstage passes to a TAFKAL80ETC concert', 12, 40)
+      pass = Item.new('Backstage passes to a TAFKAL80ETC concert', 11, 40)
       single_rose = GildedRose.new([pass])
-      single_rose.update_quality
       expect { single_rose.update_quality }.to change { pass.quality }.by 1
     end
 
     it 'backstage pass goes up by 2 when there are 10 days left' do
       pass = Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 30)
       single_rose = GildedRose.new([pass])
-      single_rose.update_quality
+      expect { single_rose.update_quality }.to change { pass.quality }.by 2
+    end
+
+    it 'backstage pass goes up by 2 when there are 6 days left' do
+      pass = Item.new("Backstage passes to a TAFKAL80ETC concert", 6, 30)
+      single_rose = GildedRose.new([pass])
       expect { single_rose.update_quality }.to change { pass.quality }.by 2
     end
 
