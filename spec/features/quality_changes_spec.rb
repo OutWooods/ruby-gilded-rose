@@ -50,5 +50,12 @@ describe 'lowers quality by one on a normal object' do
       single_rose.update_quality
       expect(brie.quality).to be <= 50
     end
+
+    it 'should never let Bries quality rise beyond fifty, even after sell in' do
+      brie = Item.new('Aged Brie', -1, 49)
+      single_rose = GildedRose.new([brie])
+      single_rose.update_quality
+      expect(brie.quality).to eq 50
+    end
   end
 end
