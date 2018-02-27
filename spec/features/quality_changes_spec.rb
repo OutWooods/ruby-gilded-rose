@@ -57,5 +57,11 @@ describe 'lowers quality by one on a normal object' do
       single_rose.update_quality
       expect(brie.quality).to eq 50
     end
+
+    it 'should not change sulfras\'s quality' do
+      sulfras = Item.new('Sulfuras, Hand of Ragnaros', 10, 80)
+      single_rose = GildedRose.new([sulfras])
+      expect { single_rose.update_quality }.not_to change { sulfras.quality }
+    end
   end
 end
