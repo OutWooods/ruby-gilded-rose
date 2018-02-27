@@ -15,8 +15,7 @@ describe 'lowers quality by one on a normal object' do
 
     it 'should reduce food outside sell_in by twice the normal amount' do
       single_rose = GildedRose.new([off_rocket])
-      change = -2
-      expect { single_rose.update_quality }.to change { off_rocket.quality }.by change
+      expect { single_rose.update_quality }.to change { off_rocket.quality }.by -2
     end
 
     it 'should not reduce a normal foods quality below 0' do
@@ -43,6 +42,13 @@ describe 'lowers quality by one on a normal object' do
       single_rose = GildedRose.new([brie])
       single_rose.update_quality
       expect { single_rose.update_quality }.to change { brie.quality }.by(2)
+    end
+
+    it 'should never let Bries quality rise above 50' do
+      brie = Item.new('Aged Brie', 50, 50)
+      single_rose = GildedRose.new([brie])
+      single_rose.update_quality
+      expect(brie.quality).to be <= 50
     end
   end
 end
