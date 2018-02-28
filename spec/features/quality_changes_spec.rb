@@ -12,25 +12,23 @@ describe 'quality ' do
       end
 
       it 'should reduce food outside sell_in by twice the normal amount' do
-        off_rocket = rocket(0, 10)
-        single_rose = GildedRose.new([off_rocket])
-        expect { single_rose.update_quality }.to change {
-                                                   off_rocket.quality
-                                                 }.by(-2)
+        rocket = rocket(0, 10)
+        rose = GildedRose.new([rocket])
+        expect { rose.update_quality }.to change { rocket.quality }.by(-2)
       end
 
       it 'should not reduce a normal foods quality below 0' do
         rocket = rocket(10, 0)
-        single_rose = GildedRose.new([rocket])
-        single_rose.update_quality
+        rose = GildedRose.new([rocket])
+        rose.update_quality
         expect(rocket.quality).to be >= 0
       end
 
       it 'should not reduce off normal foods quality below 0' do
-        off_rocket = Item.new('off_rocket', 0, 1)
-        single_rose = GildedRose.new([off_rocket])
-        single_rose.update_quality
-        expect(off_rocket.quality).to eq 0
+        rocket = rocket(0, 1)
+        rose = GildedRose.new([rocket])
+        rose.update_quality
+        expect(rocket.quality).to eq 0
       end
     end
 
