@@ -3,18 +3,22 @@ require './src/item'
 require './spec/features/feature_helper'
 
 describe 'quality ' do
+  let(:max_quality) { GildedRose::MAX_QUALITY }
+
   describe '#quality' do
     describe 'normal' do
       it 'should reduce normal foods quality within sell_in by default amount' do
         rocket = rocket(10, 10)
         rose = GildedRose.new([rocket])
-        expect { rose.update_quality }.to change { rocket.quality }.by(-1)
+        change = GildedRose::DEFAULT_DEPRECIATION
+        expect { rose.update_quality }.to change { rocket.quality }.by(-change)
       end
 
       it 'should reduce food outside sell_in by twice the normal amount' do
         rocket = rocket(0, 10)
         rose = GildedRose.new([rocket])
-        expect { rose.update_quality }.to change { rocket.quality }.by(-2)
+        change = GildedRose::DEFAULT_DEPRECIATION * 2
+        expect { rose.update_quality }.to change { rocket.quality }.by(-change)
       end
 
       it 'should not reduce a normal foods quality below 0' do
@@ -47,8 +51,8 @@ describe 'quality ' do
         expect { rose.update_quality }.to change { brie.quality }.by(2)
       end
 
-      it 'should never let Bries quality rise above 50' do
-        brie = brie(50, 50)
+      it 'should never let Bries quality rise above Max quality' do
+        brie = brie(max_quality, max_quality)
         rose = GildedRose.new([brie])
         rose.update_quality
         expect(brie.quality).to be <= 50
@@ -100,7 +104,7 @@ describe 'quality ' do
         end
 
         it 'backstage pass does not go up past 50 when there are > 10 days left' do
-          pass = Item.new('Backstage passes to a TAFKAL80ETC concert', 13, 50)
+          pass = pass(13, 50)
           rose = GildedRose.new([pass])
           expect { rose.update_quality }.to_not change { pass.quality }
         end

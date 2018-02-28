@@ -55,6 +55,7 @@ Backstage go up by 1 when sell in is +1
   Rules I have set myself on this task:
 
 
+  First remove all magic numbers
 
 ## Targets/rules for me to follow
   - Solve a simpler problem first, and gradually add complexity. (So focus on the first rule. Solve that, then build up.)
@@ -62,7 +63,7 @@ Backstage go up by 1 when sell in is +1
   - Take it slow, small incremental changes
   - Really understand the code before making changes
   - Focus on making things better, not perfect.
-  
+
 ## Feedback points
 Things I am particularly keen to improve (do give me feedback on any other aspect too)
   - Have I communicated what I've done well? (E.g. commit messages, method/variable names.)
