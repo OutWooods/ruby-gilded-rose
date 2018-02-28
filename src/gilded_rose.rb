@@ -18,10 +18,7 @@ class GildedRose
     name = item.name
     unless dont_change(name)
       unless name == "Aged Brie" or name == "Backstage passes to a TAFKAL80ETC concert" #rule 2 and rule 6
-        item.quality += DEFAULT_DEPRECIATION  if item.quality > MIN_QUALITY   #rule 2
-        if item.sell_in <= 0 and item.quality > MIN_QUALITY
-        item.quality += DEFAULT_DEPRECIATION
-      end
+       normal_food_change(item)
      # things that increase in quality (or back stage passes) rule 3 and 6
       else
         if item.quality < MAX_QUALITY
@@ -64,5 +61,13 @@ class GildedRose
   def dont_change(name)
     name == "Sulfuras, Hand of Ragnaros"
   end
+
+  def normal_food_change(item)
+    item.quality += DEFAULT_DEPRECIATION  if item.quality > MIN_QUALITY   #rule 2
+    if item.sell_in <= 0 and item.quality > MIN_QUALITY
+    item.quality += DEFAULT_DEPRECIATION
+    end
+  end
+
 
 end
