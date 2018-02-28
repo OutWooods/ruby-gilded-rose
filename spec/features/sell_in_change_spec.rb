@@ -31,5 +31,11 @@ describe 'update quality' do
         sulfras.sell_in
       }
     end
+
+    it 'should reduce aged backstage_pass sell in by the normal amount' do
+      pass = pass(0, 10)
+      rose = GildedRose.new([pass])
+      expect { rose.update_quality }.to change { pass.sell_in }.by(-1)
+    end
   end
 end

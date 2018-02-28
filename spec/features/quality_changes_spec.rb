@@ -70,31 +70,31 @@ describe 'quality ' do
     end
     describe 'Backstage pass' do
         it 'backstage pass goes up by 1 when there are > 10 days left' do
-          pass = Item.new('Backstage passes to a TAFKAL80ETC concert', 11, 40)
+          pass = pass(11, 40)
           rose = GildedRose.new([pass])
           expect { rose.update_quality }.to change { pass.quality }.by 1
         end
 
         it 'backstage pass goes up by 2 when there are 10 days left' do
-          pass = Item.new('Backstage passes to a TAFKAL80ETC concert', 10, 30)
+          pass = pass(10, 30)
           rose = GildedRose.new([pass])
           expect { rose.update_quality }.to change { pass.quality }.by 2
         end
 
         it 'backstage pass goes up by 2 when there are 6 days left' do
-          pass = Item.new('Backstage passes to a TAFKAL80ETC concert', 6, 30)
+          pass = pass(6, 30)
           rose = GildedRose.new([pass])
           expect { rose.update_quality }.to change { pass.quality }.by 2
         end
 
         it 'backstage pass goes up by 3 when there are 5 days left' do
-          pass = Item.new('Backstage passes to a TAFKAL80ETC concert', 5, 30)
+          pass = pass(5, 30)
           rose = GildedRose.new([pass])
           expect { rose.update_quality }.to change { pass.quality }.by 3
         end
 
         it 'backstage pass goes up by 3 when there is 1 day left' do
-          pass = Item.new('Backstage passes to a TAFKAL80ETC concert', 5, 30)
+          pass = pass(5, 30)
           rose = GildedRose.new([pass])
           expect { rose.update_quality }.to change { pass.quality }.by 3
         end
@@ -106,25 +106,21 @@ describe 'quality ' do
         end
 
         it 'backstage pass does not got past 50 when 3 < x > 10 days left' do
-          pass = Item.new('Backstage passes to a TAFKAL80ETC concert', 10, 49)
+          pass = pass(10, 49)
           rose = GildedRose.new([pass])
           rose.update_quality
           expect(pass.quality).to eq 50
         end
 
         it 'backstage pass does not go up past 50 when there are > 3 days left' do
-          pass = Item.new(
-            'Backstage passes to a TAFKAL80ETC concert', 2, 48
-          )
+          pass = pass(2, 48)
           rose = GildedRose.new([pass])
           rose.update_quality
           expect(pass.quality).to eq 50
         end
 
         it 'back stage pass should go down to 0 after concert' do
-          backstage_pass = Item.new(
-            'Backstage passes to a TAFKAL80ETC concert', 0, 50
-          )
+          backstage_pass = pass(0, 50)
           rose = GildedRose.new([backstage_pass])
           rose.update_quality
           expect(backstage_pass.quality).to eq 0
