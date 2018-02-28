@@ -31,7 +31,7 @@ Food that is off, but has a quality of 1, should go down to 0
 
 Brie increases in quality by twice as much when it is passed sell in
 
-Backstage go up by 1 when sell in is +1 
+Backstage go up by 1 when sell in is +1
 
 
 
@@ -40,19 +40,32 @@ Backstage go up by 1 when sell in is +1
  - You can update the quantity method
 
 ## Approach
+
+  1) Stage one, read and understand the rules of the game from the spec.
+
+  2) Stage two, mark out and idenifty how bits of the code appears to link to the rules
+  (I've added comments. To the code)
+
+  3) Build charactirsation tests. So build tests, then make sure they pass on the existing code base. My approach was to see if the rules/spec aligned with the codes actual functionality.
+
+  4) Make notes of extra rules/interpretations of the rules in the code base.
+
+  5) Start to gradually refactor. Making small changes.
+
+  Rules I have set myself on this task:
+
+
+
+## Targets/rules for me to follow
   - Solve a simpler problem first, and gradually add complexity. (So focus on the first rule. Solve that, then build up.)
   - Test first and don't 'improve' untested code
   - Take it slow, small incremental changes
   - Really understand the code before making changes
-
-## Targets
-  - Take it slow, change minimal amounts
-  - Tests always focus on behaviour
-  - Leave code better than I found it
-
+  - Focus on making things better, not perfect.
+  
 ## Feedback points
 Things I am particularly keen to improve (do give me feedback on any other aspect too)
-  - Have I communicated what I've done well? (E.g. commit messages, method/variable names.
+  - Have I communicated what I've done well? (E.g. commit messages, method/variable names.)
   - Do you see any steps where I jumped too fast?
   - Keeping my methods short, and responsibilities clear
 
