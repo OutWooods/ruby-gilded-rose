@@ -1,17 +1,18 @@
 require './src/gilded_rose'
 require './src/item'
+require './spec/features/feature_helper'
 
 describe 'quality ' do
   describe '#quality' do
     describe 'normal' do
       it 'should reduce normal foods quality within sell_in by default amount' do
-        rocket = Item.new('rocket', 10, 10)
+        rocket = rocket(10, 10)
         single_rose = GildedRose.new([rocket])
         expect { single_rose.update_quality }.to change { rocket.quality }.by(-1)
       end
 
       it 'should reduce food outside sell_in by twice the normal amount' do
-        off_rocket = Item.new('rocket', 0, 10)
+        off_rocket = rocket(0, 10)
         single_rose = GildedRose.new([off_rocket])
         expect { single_rose.update_quality }.to change {
                                                    off_rocket.quality
@@ -19,7 +20,7 @@ describe 'quality ' do
       end
 
       it 'should not reduce a normal foods quality below 0' do
-        rocket = Item.new('rocket', 10, 0)
+        rocket = rocket(10, 0)
         single_rose = GildedRose.new([rocket])
         single_rose.update_quality
         expect(rocket.quality).to be >= 0
