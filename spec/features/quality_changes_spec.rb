@@ -5,6 +5,7 @@ require './spec/features/feature_helper'
 describe 'quality ' do
   let(:max_quality) { GildedRose::MAX_QUALITY }
   let(:min_quality) { GildedRose::MIN_QUALITY}
+  let(:default_improvement) { GildedRose::DEFAULT_IMPROVEMENT }
 
   describe '#quality' do
     describe 'normal' do
@@ -42,7 +43,9 @@ describe 'quality ' do
         brie = brie(10, 10)
         rose = GildedRose.new([brie])
         rose.update_quality
-        expect { rose.update_quality }.to change { brie.quality }.by(1)
+        expect { rose.update_quality }.to change {
+          brie.quality
+         }.by( default_improvement)
       end
 
       it 'should increase quality of even when its passed sell_in Brie' do
@@ -77,7 +80,9 @@ describe 'quality ' do
         it 'backstage pass goes up by 1 when there are > 10 days left' do
           pass = pass(11, 40)
           rose = GildedRose.new([pass])
-          expect { rose.update_quality }.to change { pass.quality }.by 1
+          expect { rose.update_quality }.to change {
+             pass.quality
+           }.by default_improvement
         end
 
         it 'backstage pass goes up by 2 when there are 10 days left' do
@@ -128,7 +133,7 @@ describe 'quality ' do
           backstage_pass = pass(0, max_quality)
           rose = GildedRose.new([backstage_pass])
           rose.update_quality
-          expect(backstage_pass.quality).to eq 0
+          expect(backstage_pass.quality).to eq min_quality
         end
       end
   end

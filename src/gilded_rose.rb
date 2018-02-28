@@ -3,6 +3,7 @@ class GildedRose
   SELL_IN_CHANGE = -1
   MAX_QUALITY = 50
   MIN_QUALITY = 0
+  DEFAULT_IMPROVEMENT = 1
 
   def initialize(items)
     @items = items
@@ -20,7 +21,7 @@ class GildedRose
      # things that increase in quality (or back stage passes) rule 3 and 6
       else
         if item.quality < MAX_QUALITY
-          item.quality = item.quality + 1
+          item.quality += DEFAULT_IMPROVEMENT
           if item.name == "Backstage passes to a TAFKAL80ETC concert"
             if item.sell_in < 11
               if item.quality < MAX_QUALITY # not sure why there is repetition here?
@@ -37,7 +38,7 @@ class GildedRose
       end
 
       if item.name != "Sulfuras, Hand of Ragnaros"
-        item.sell_in = item.sell_in - 1
+        item.sell_in += SELL_IN_CHANGE
       end
 
       # rule 1 double speed
@@ -46,7 +47,7 @@ class GildedRose
           if item.name != "Backstage passes to a TAFKAL80ETC concert" # rule 6
             if item.quality > MIN_QUALITY # rule 2
               if item.name != "Sulfuras, Hand of Ragnaros" # rule 5
-                item.quality += SELL_IN_CHANGE
+                item.quality -= DEFAULT_DEPRECIATION
               end
             end
           else
