@@ -55,14 +55,14 @@ describe 'quality ' do
         brie = brie(max_quality, max_quality)
         rose = GildedRose.new([brie])
         rose.update_quality
-        expect(brie.quality).to be <= 50
+        expect(brie.quality).to be <= max_quality
       end
 
       it 'should never let Bries quality rise beyond fifty, even after sell in' do
         brie = brie(-1, 49)
         rose = GildedRose.new([brie])
         rose.update_quality
-        expect(brie.quality).to eq 50
+        expect(brie.quality).to eq max_quality
       end
     end
     describe 'Sulfras' do
@@ -103,28 +103,28 @@ describe 'quality ' do
           expect { rose.update_quality }.to change { pass.quality }.by 3
         end
 
-        it 'backstage pass does not go up past 50 when there are > 10 days left' do
-          pass = pass(13, 50)
+        it 'backstage pass does not go up past max_quality when there are > 10 days left' do
+          pass = pass(13, max_quality)
           rose = GildedRose.new([pass])
           expect { rose.update_quality }.to_not change { pass.quality }
         end
 
-        it 'backstage pass does not got past 50 when 3 < x > 10 days left' do
+        it 'backstage pass does not got past max_quality when 3 < x > 10 days left' do
           pass = pass(10, 49)
           rose = GildedRose.new([pass])
           rose.update_quality
-          expect(pass.quality).to eq 50
+          expect(pass.quality).to eq max_quality
         end
 
-        it 'backstage pass does not go up past 50 when there are > 3 days left' do
+        it 'backstage pass does not go up past max_quality when there are > 3 days left' do
           pass = pass(2, 48)
           rose = GildedRose.new([pass])
           rose.update_quality
-          expect(pass.quality).to eq 50
+          expect(pass.quality).to eq max_quality
         end
 
         it 'back stage pass should go down to 0 after concert' do
-          backstage_pass = pass(0, 50)
+          backstage_pass = pass(0, max_quality)
           rose = GildedRose.new([backstage_pass])
           rose.update_quality
           expect(backstage_pass.quality).to eq 0

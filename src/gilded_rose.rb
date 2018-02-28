@@ -1,5 +1,6 @@
 class GildedRose
   DEFAULT_DEPRECIATION = 1
+  SELL_IN_CHANGE = -1
   MAX_QUALITY = 50
 
   def initialize(items)
@@ -15,7 +16,6 @@ class GildedRose
             item.quality -= DEFAULT_DEPRECIATION
           end
         end
-
      # things that increase in quality (or back stage passes) rule 3 and 6
       else
         if item.quality < MAX_QUALITY
@@ -45,7 +45,7 @@ class GildedRose
           if item.name != "Backstage passes to a TAFKAL80ETC concert" # rule 6
             if item.quality > 0 # rule 2
               if item.name != "Sulfuras, Hand of Ragnaros" # rule 5
-                item.quality = item.quality - 1
+                item.quality += SELL_IN_CHANGE
               end
             end
           else
