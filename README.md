@@ -63,6 +63,20 @@ Backstage go up by 1 when sell in is +1
   - Take it slow, small incremental changes
   - Really understand the code before making changes
   - Focus on making things better, not perfect.
+  
+## Reflections 
+#### WWW
+  - I'm glad I built a thorough testing framework, and learnt about edge cases as I discovered alot of bonus rules in the code. 
+  - Spending a long time documenting, writing tests, writing notes in code. Really helped me understand the existing structure. And made me much more confident when it came to testing it that I wasn't breaking it. 
+  - Focusing on quick wins early on, like magic numbers cleaned up the code and left it less brittle. Whilst having minimal risk at changing things badly. 
+  - Pomodoro technique were good, and spending lots of time producing clean well laid out code was good.
+  
+#### EBI  
+ - I should have focused more on the wording of the rules when I set out and idetified spaces to change and adapt. 
+ - I had planned more heavily once I reached the refactoring stage. Did I want to do more OO or refactor down the methods first? 
+ - When things go bad. Take breaks. Stop. Make sure I follow the pomodoro even more tightly. Not less. 
+ - Make sure to add a code coverage tester! (Duh)
+ - Build more feature tests as well as units. Even if a feature is provided.
 
 ## Feedback points
 Things I am particularly keen to improve (do give me feedback on any other aspect too)
