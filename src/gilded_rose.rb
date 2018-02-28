@@ -6,7 +6,7 @@ class GildedRose
     @items = items
   end
 
-  def update_quality()
+  def update_quality
     @items.each do |item|
       # quality goes down by 1 for anything other than the rules 3, 5, 6  below
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert" #rule 2 and rule 6
