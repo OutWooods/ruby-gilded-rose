@@ -17,10 +17,11 @@ class GildedRose
     @items.each do |item|
     name = item.name
     unless dont_change(name)
-      unless item.name == "Aged Brie" or item.name == "Backstage passes to a TAFKAL80ETC concert" #rule 2 and rule 6
-        if item.quality > MIN_QUALITY   #rule 2
-            item.quality += DEFAULT_DEPRECIATION
-        end
+      unless name == "Aged Brie" or name == "Backstage passes to a TAFKAL80ETC concert" #rule 2 and rule 6
+        item.quality += DEFAULT_DEPRECIATION  if item.quality > MIN_QUALITY   #rule 2
+        if item.sell_in <= 0 and item.quality > MIN_QUALITY
+        item.quality += DEFAULT_DEPRECIATION
+      end
      # things that increase in quality (or back stage passes) rule 3 and 6
       else
         if item.quality < MAX_QUALITY
@@ -46,11 +47,7 @@ class GildedRose
       # rule 1 double speed
       if item.sell_in < MIN_QUALITY
         if item.name != "Aged Brie" # rule 3
-          if item.name != "Backstage passes to a TAFKAL80ETC concert" # rule 6
-            if item.quality > MIN_QUALITY # rule 2
-                item.quality += DEFAULT_DEPRECIATION
-            end
-          else
+          if item.name == "Backstage passes to a TAFKAL80ETC concert" # rule 6
             item.quality = MIN_QUALITY
           end
        # default increase for backstage pass
