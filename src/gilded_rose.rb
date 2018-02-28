@@ -15,12 +15,11 @@ class GildedRose
 
   def update_quality
     @items.each do |item|
-      # quality goes down by 1 for anything other than the rules 3, 5, 6  below
+    name = item.name
+    unless dont_change(name)
       unless item.name == "Aged Brie" or item.name == "Backstage passes to a TAFKAL80ETC concert" #rule 2 and rule 6
         if item.quality > MIN_QUALITY   #rule 2
-          unless item.name == "Sulfuras, Hand of Ragnaros" # rule 5
             item.quality += DEFAULT_DEPRECIATION
-          end
         end
      # things that increase in quality (or back stage passes) rule 3 and 6
       else
@@ -41,18 +40,15 @@ class GildedRose
         end
       end
 
-      unless item.name == "Sulfuras, Hand of Ragnaros"
         item.sell_in += SELL_IN_CHANGE
-      end
+
 
       # rule 1 double speed
       if item.sell_in < MIN_QUALITY
         if item.name != "Aged Brie" # rule 3
           if item.name != "Backstage passes to a TAFKAL80ETC concert" # rule 6
             if item.quality > MIN_QUALITY # rule 2
-              if item.name != "Sulfuras, Hand of Ragnaros" # rule 5
                 item.quality += DEFAULT_DEPRECIATION
-              end
             end
           else
             item.quality = MIN_QUALITY
@@ -64,4 +60,12 @@ class GildedRose
       end
     end
   end
+  end
+
+  private
+
+  def dont_change(name)
+    name == "Sulfuras, Hand of Ragnaros"
+  end
+
 end
