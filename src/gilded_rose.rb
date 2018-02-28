@@ -2,6 +2,7 @@ class GildedRose
   DEFAULT_DEPRECIATION = 1
   SELL_IN_CHANGE = -1
   MAX_QUALITY = 50
+  MIN_QUALITY = 0
 
   def initialize(items)
     @items = items
@@ -11,7 +12,7 @@ class GildedRose
     @items.each do |item|
       # quality goes down by 1 for anything other than the rules 3, 5, 6  below
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert" #rule 2 and rule 6
-        if item.quality > 0   #rule 2
+        if item.quality > MIN_QUALITY   #rule 2
           if item.name != "Sulfuras, Hand of Ragnaros" # rule 5
             item.quality -= DEFAULT_DEPRECIATION
           end
@@ -40,10 +41,10 @@ class GildedRose
       end
 
       # rule 1 double speed
-      if item.sell_in < 0
+      if item.sell_in < MIN_QUALITY
         if item.name != "Aged Brie" # rule 3
           if item.name != "Backstage passes to a TAFKAL80ETC concert" # rule 6
-            if item.quality > 0 # rule 2
+            if item.quality > MIN_QUALITY # rule 2
               if item.name != "Sulfuras, Hand of Ragnaros" # rule 5
                 item.quality += SELL_IN_CHANGE
               end

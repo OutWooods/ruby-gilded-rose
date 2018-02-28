@@ -4,10 +4,11 @@ require './spec/features/feature_helper'
 
 describe 'quality ' do
   let(:max_quality) { GildedRose::MAX_QUALITY }
+  let(:min_quality) { GildedRose::MIN_QUALITY}
 
   describe '#quality' do
     describe 'normal' do
-      it 'should reduce normal foods quality within sell_in by default amount' do
+      it 'should reduce foods quality within sell_in by default amount' do
         rocket = rocket(10, 10)
         rose = GildedRose.new([rocket])
         change = GildedRose::DEFAULT_DEPRECIATION
@@ -22,17 +23,17 @@ describe 'quality ' do
       end
 
       it 'should not reduce a normal foods quality below 0' do
-        rocket = rocket(10, 0)
+        rocket = rocket(10, min_quality)
         rose = GildedRose.new([rocket])
         rose.update_quality
-        expect(rocket.quality).to be >= 0
+        expect(rocket.quality).to be >= min_quality
       end
 
       it 'should not reduce off normal foods quality below 0' do
         rocket = rocket(0, 1)
         rose = GildedRose.new([rocket])
         rose.update_quality
-        expect(rocket.quality).to eq 0
+        expect(rocket.quality).to eq min_quality
       end
     end
 
@@ -45,7 +46,7 @@ describe 'quality ' do
       end
 
       it 'should increase quality of even when its passed sell_in Brie' do
-        brie = brie(0, 0)
+        brie = brie(0, min_quality)
         rose = GildedRose.new([brie])
         rose.update_quality
         expect { rose.update_quality }.to change { brie.quality }.by(2)
