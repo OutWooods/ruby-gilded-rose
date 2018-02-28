@@ -51,11 +51,9 @@ class GildedRose
           else
             item.quality = item.quality - item.quality # rule 6
           end
-
-        else # rule 3
-          if item.quality <  MAX_QUALITY
-            item.quality = item.quality + 1
-          end
+       # default increase for backstage pass
+        elsif item.quality < MAX_QUALITY
+          item.quality = item.quality + 1
         end
       end
     end
