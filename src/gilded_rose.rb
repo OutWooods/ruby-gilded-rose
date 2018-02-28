@@ -4,6 +4,10 @@ class GildedRose
   MAX_QUALITY = 50
   MIN_QUALITY = 0
   DEFAULT_IMPROVEMENT = 1
+  BACKSTAGE_PASS_SLIGHT_SELL = 11
+  BACKSTAGE_PASS_PREMIUM_SELL = 6
+  BACKSTAGE_PASS_SLIGHT_CHANGE = 1
+  BACKSTAGE_PREMIUM_CHANGE = 1
 
   def initialize(items)
     @items = items
@@ -23,14 +27,14 @@ class GildedRose
         if item.quality < MAX_QUALITY
           item.quality += DEFAULT_IMPROVEMENT
           if item.name == "Backstage passes to a TAFKAL80ETC concert"
-            if item.sell_in < 11
+            if item.sell_in < BACKSTAGE_PASS_SLIGHT_SELL
               if item.quality < MAX_QUALITY # not sure why there is repetition here?
-                item.quality = item.quality + 1
+                item.quality += BACKSTAGE_PASS_SLIGHT_CHANGE
               end
             end
-            if item.sell_in < 6
+            if item.sell_in < BACKSTAGE_PASS_PREMIUM_SELL
               if item.quality < MAX_QUALITY
-                item.quality = item.quality + 1
+                item.quality += BACKSTAGE_PREMIUM_CHANGE
               end
             end
           end
@@ -51,11 +55,11 @@ class GildedRose
               end
             end
           else
-            item.quality = item.quality - item.quality # rule 6
+            item.quality = MIN_QUALITY
           end
        # default increase for backstage pass
         elsif item.quality < MAX_QUALITY
-          item.quality = item.quality + 1
+          item.quality += DEFAULT_IMPROVEMENT
         end
       end
     end

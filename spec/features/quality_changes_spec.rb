@@ -93,21 +93,24 @@ describe 'quality ' do
         end
 
         it 'backstage pass goes up by 2 when there are 6 days left' do
+          change = default_improvement * 2
           pass = pass(6, 30)
           rose = GildedRose.new([pass])
-          expect { rose.update_quality }.to change { pass.quality }.by 2
+          expect { rose.update_quality }.to change { pass.quality }.by change
         end
 
         it 'backstage pass goes up by 3 when there are 5 days left' do
+          change = default_improvement  * 3
           pass = pass(5, 30)
           rose = GildedRose.new([pass])
-          expect { rose.update_quality }.to change { pass.quality }.by 3
+          expect { rose.update_quality }.to change { pass.quality }.by change
         end
 
         it 'backstage pass goes up by 3 when there is 1 day left' do
+          change = default_improvement  * 3
           pass = pass(5, 30)
           rose = GildedRose.new([pass])
-          expect { rose.update_quality }.to change { pass.quality }.by 3
+          expect { rose.update_quality }.to change { pass.quality }.by change
         end
 
         it 'backstage pass does not go up past max_quality when there are > 10 days left' do
