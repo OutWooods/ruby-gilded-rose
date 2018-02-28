@@ -1,5 +1,5 @@
 class GildedRose
-  DEFAULT_DEPRECIATION = 1
+  DEFAULT_DEPRECIATION = -1
   SELL_IN_CHANGE = -1
   MAX_QUALITY = 50
   MIN_QUALITY = 0
@@ -15,7 +15,7 @@ class GildedRose
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert" #rule 2 and rule 6
         if item.quality > MIN_QUALITY   #rule 2
           if item.name != "Sulfuras, Hand of Ragnaros" # rule 5
-            item.quality -= DEFAULT_DEPRECIATION
+            item.quality += DEFAULT_DEPRECIATION
           end
         end
      # things that increase in quality (or back stage passes) rule 3 and 6
@@ -47,7 +47,7 @@ class GildedRose
           if item.name != "Backstage passes to a TAFKAL80ETC concert" # rule 6
             if item.quality > MIN_QUALITY # rule 2
               if item.name != "Sulfuras, Hand of Ragnaros" # rule 5
-                item.quality -= DEFAULT_DEPRECIATION
+                item.quality += DEFAULT_DEPRECIATION
               end
             end
           else

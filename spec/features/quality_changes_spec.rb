@@ -6,6 +6,7 @@ describe 'quality ' do
   let(:max_quality) { GildedRose::MAX_QUALITY }
   let(:min_quality) { GildedRose::MIN_QUALITY}
   let(:default_improvement) { GildedRose::DEFAULT_IMPROVEMENT }
+  let(:default_depreciation) { GildedRose::DEFAULT_DEPRECIATION}
 
   describe '#quality' do
     describe 'normal' do
@@ -13,14 +14,14 @@ describe 'quality ' do
         rocket = rocket(10, 10)
         rose = GildedRose.new([rocket])
         change = GildedRose::DEFAULT_DEPRECIATION
-        expect { rose.update_quality }.to change { rocket.quality }.by(-change)
+        expect { rose.update_quality }.to change { rocket.quality }.by(change)
       end
 
       it 'should reduce food outside sell_in by twice the normal amount' do
         rocket = rocket(0, 10)
         rose = GildedRose.new([rocket])
         change = GildedRose::DEFAULT_DEPRECIATION * 2
-        expect { rose.update_quality }.to change { rocket.quality }.by(-change)
+        expect { rose.update_quality }.to change { rocket.quality }.by(change)
       end
 
       it 'should not reduce a normal foods quality below 0' do
