@@ -1,4 +1,6 @@
 class GildedRose
+  DEFAULT_DEPRECIATION = 1
+  MAX_QUALITY = 50
 
   def initialize(items)
     @items = items
@@ -10,22 +12,22 @@ class GildedRose
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert" #rule 2 and rule 6
         if item.quality > 0   #rule 2
           if item.name != "Sulfuras, Hand of Ragnaros" # rule 5
-            item.quality -= 1 # rule 1 ()
+            item.quality -= DEFAULT_DEPRECIATION
           end
         end
 
      # things that increase in quality (or back stage passes) rule 3 and 6
       else
-        if item.quality < 50
+        if item.quality < MAX_QUALITY
           item.quality = item.quality + 1
           if item.name == "Backstage passes to a TAFKAL80ETC concert"
             if item.sell_in < 11
-              if item.quality < 50 # not sure why there is repetition here?
+              if item.quality < MAX_QUALITY # not sure why there is repetition here?
                 item.quality = item.quality + 1
               end
             end
             if item.sell_in < 6
-              if item.quality < 50
+              if item.quality < MAX_QUALITY
                 item.quality = item.quality + 1
               end
             end
@@ -51,7 +53,7 @@ class GildedRose
           end
 
         else # rule 3
-          if item.quality < 50
+          if item.quality <  MAX_QUALITY
             item.quality = item.quality + 1
           end
         end
